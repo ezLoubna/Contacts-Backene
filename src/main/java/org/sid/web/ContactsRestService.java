@@ -1,7 +1,7 @@
 package org.sid.web;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.sid.dao.ContactsRepository;
 import org.sid.entities.Contacts;
@@ -33,6 +33,12 @@ public class ContactsRestService {
 	@RequestMapping(value = "/contacts",method=RequestMethod.POST)
 	public Contacts saveContact(@RequestBody Contacts c) {
 		return contactsRepository.save(c);	
+	}
+	
+	@RequestMapping(value="/contacts/{id}",method=RequestMethod.GET)
+	public Optional<Contacts> getContact (@PathVariable Long id) {
+		return contactsRepository.findById(id);
+		
 	}
 	
 	@RequestMapping(value = "/contacts/{id}",method=RequestMethod.DELETE)
